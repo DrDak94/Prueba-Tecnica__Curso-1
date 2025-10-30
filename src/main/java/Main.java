@@ -3,6 +3,8 @@ import entities.Cliente;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
 
@@ -10,6 +12,9 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
+        // Esconder los Logs de Hibernate al ejecutar el programa
+        Logger.getLogger("org.hibernate").setLevel(Level.OFF);
+        
         // Mensaje de bienvenida
         System.out.println("Bienvenido a GestUser!");
         System.out.println("El programa Nª1 para la gestión de Clientes!");
