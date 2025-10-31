@@ -44,7 +44,7 @@ Su diseño busca ser simple, intuitivo y totalmente funcional desde la línea de
 
 \- ☕ \*\*Java 17 o superior\*\*  
 
-\- 🗄️ \*\*MySQL\*\* en ejecución en el \*\*puerto 3306\*\*  
+\- 🗄️ \*\*MySQL\*\* en ejecución en el \*\*puerto 3306\*\* y la Base de Datos creada con nombre "clientes"
 
 \- ⚙️ \*\*JPA / Hibernate\*\* configurado con la unidad de persistencia `miUnidad`  
 
