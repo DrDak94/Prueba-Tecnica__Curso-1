@@ -10,7 +10,7 @@ public class ClienteJPA {
     // ----------------------- Registrar cliente -----------------------
     // Guarda un nuevo cliente en la base de datos.
     public static void registrarCliente(Cliente cliente) {
-        try (EntityManager em = ConfigJPA.getEM()) {
+        try (EntityManager em = ConfigJPA.getEMF()) {
             em.getTransaction().begin();        // Inicia una transacción
             em.persist(cliente);                // Guarda el objeto cliente en la base de datos
             em.getTransaction().commit();       // Confirma los cambios
@@ -23,7 +23,7 @@ public class ClienteJPA {
     // ----------------------- Listar clientes -----------------------
     // Devuelve una lista con todos los clientes registrados.
     public static List<Cliente> listadoClientes() {
-        try (EntityManager em = ConfigJPA.getEM()) {
+        try (EntityManager em = ConfigJPA.getEMF()) {
             // Ejecuta una consulta JPQL que selecciona todos los objetos Cliente
             return em.createQuery("FROM Cliente", Cliente.class).getResultList();
         } catch (Exception e) {
@@ -35,7 +35,7 @@ public class ClienteJPA {
     // ----------------------- Buscar cliente por ID -----------------------
     // Busca un cliente específico por su ID.
     public static Cliente buscarClientePorId(Long id) {
-        try (EntityManager em = ConfigJPA.getEM()) {
+        try (EntityManager em = ConfigJPA.getEMF()) {
             // Usa el metodo find() para obtener el cliente por su clave primaria
             return em.find(Cliente.class, id);
         } catch (Exception e) {
@@ -47,7 +47,7 @@ public class ClienteJPA {
     // ----------------------- Modificar cliente -----------------------
     // Actualiza los datos de un cliente existente.
     public static boolean modificarCliente(Cliente clienteActualizado) {
-        try (EntityManager em = ConfigJPA.getEM()) {
+        try (EntityManager em = ConfigJPA.getEMF()) {
             em.getTransaction().begin();        // Inicia transacción
             em.merge(clienteActualizado);       // Actualiza el cliente (merge reemplaza el existente)
             em.getTransaction().commit();       // Confirma los cambios
@@ -61,7 +61,7 @@ public class ClienteJPA {
     // ----------------------- Eliminar cliente -----------------------
     // Elimina un cliente de la base de datos según su ID.
     public static boolean eliminarCliente(Long idCliente) {
-        try (EntityManager em = ConfigJPA.getEM()) {
+        try (EntityManager em = ConfigJPA.getEMF()) {
             // Primero busca el cliente por su ID
             Cliente cliente = em.find(Cliente.class, idCliente);
             if (cliente == null) return false;      // Si no existe, devuelve false
@@ -79,7 +79,7 @@ public class ClienteJPA {
     // ----------------------- Buscar clientes por ciudad -----------------------
     // Devuelve una lista de clientes que viven en una ciudad específica.
     public static List<Cliente> buscarClientesPorCiudad(String ciudad) {
-        try (EntityManager em = ConfigJPA.getEM()) {
+        try (EntityManager em = ConfigJPA.getEMF()) {
             // Consulta JPQL con parámetro: ciudad
             return em.createQuery("FROM Cliente c WHERE c.ciudad = :ciudad", Cliente.class)
                     .setParameter("ciudad", ciudad)         // Asigna el valor al parámetro
